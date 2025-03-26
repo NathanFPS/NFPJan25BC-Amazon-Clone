@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
         <h1>Products Page</h1>
         <ul>
           <li><Link to='/products-details/1'>Product 1</Link></li>
@@ -6,12 +6,36 @@
           <li><Link to='/products-details/3'>Product 3</Link></li>
           <li><Link to='/products-details/4'>Product 4</Link></li>
         </ul>
-</div>
+</div> -->
 
 
-      .product-rows {
+      <!-- .product-rows {
         display: flex;
         z-index: 1;
         margin-left: 5px;
         margin-right: 5px;
+    } -->
+
+
+    <!-- import React from 'react';  Old Login
+    import ReactDOM from 'react-dom';
+    import { Route } from 'react-router-dom';
+    import Modal from './Modal';
+    
+    const Login = () => {
+      const [isOpen, setIsOpen] = React.useState(false);
+      return (
+        <div className="login">
+          <h1>Log Up Page</h1>
+          <p>This is our login page</p>
+          <button onClick={() => setIsOpen(true)}>Open Modal</button>
+          {isOpen && ReactDOM.createPortal(<Modal setIsOpen={setIsOpen} />,
+            document.getElementById('modal-root-div')
+          )}
+        </div>
+      );
     }
+    
+    
+    
+    export default Login; -->
