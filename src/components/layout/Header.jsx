@@ -16,10 +16,12 @@ const Header = () => {
             <SearchIcon className='search-icon' />
           </div>
           <div className="header-nav">
-            <div className="header-options">
-                <span className="option-1">Hello Guest</span>
-                <span className="option-2">Sign In</span>
-            </div>
+            <Link to="/login">
+              <div className="header-options">
+                  <span className="option-1">Hello Guest</span>
+                  <span className="option-2">Sign In</span>
+              </div>
+            </Link>
             
             <div className="header-options">
                 <span className="option-1">Returns</span>

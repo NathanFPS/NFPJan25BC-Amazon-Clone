@@ -1,0 +1,17 @@
+<div>
+        <h1>Products Page</h1>
+        <ul>
+          <li><Link to='/products-details/1'>Product 1</Link></li>
+          <li><Link to='/products-details/2'>Product 2</Link></li>
+          <li><Link to='/products-details/3'>Product 3</Link></li>
+          <li><Link to='/products-details/4'>Product 4</Link></li>
+        </ul>
+</div>
+
+
+      .product-rows {
+        display: flex;
+        z-index: 1;
+        margin-left: 5px;
+        margin-right: 5px;
+    }

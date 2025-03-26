@@ -4,6 +4,8 @@ import Home from './components/Home';
 import Products from './components/Products';
 import Header from './components/layout/Header';
 import ProductsDetails from './components/ProductsDetails';
+import Login from './components/Login';
+import NotFound from './components/NotFound';
 
 const App = () => {
   return (
@@ -17,6 +19,8 @@ const App = () => {
           <Route path="/home" component={Home} />
           <Route path="/products" component={Products} />
           <Route path="/products-details/:id" component={ProductsDetails} />
+          <Route path="/login" component={Login} />
+          <Route path="*" component={NotFound} />
         </Switch>
       </div>
     </Router>
