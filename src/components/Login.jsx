@@ -1,8 +1,9 @@
-import React, {useState, useRef, useReducer, useEffect} from 'react';
+import React, {useState, useRef, useReducer, useEffect, useContext} from 'react';
 import ReactDOM from 'react-dom';
 import { Link, Route } from 'react-router-dom';
 import Modal from './Modal';
 import './styles/Login.css';
+import AuthContext from '../context/authContext';
 
 const reducer = (state, action) => {
   if(action.type === 'EMAIL_INPUT') {
@@ -15,6 +16,7 @@ const reducer = (state, action) => {
 }
 
 const Login = () => {
+  const ctx = useContext(AuthContext);
   const [formIsValid, setFormIsValid] = useState(false);
   const [state, dispatch] = useReducer(reducer, {
     emailValue: "", 
@@ -45,6 +47,7 @@ const Login = () => {
     e.preventDefault();
     console.log("Entered Email: ", state.emailValue);
     console.log("Entered Password: ", state.passwordValue);
+    ctx.onLogin(state.emailValue, state.passwordValue);
   }
 
   return (
