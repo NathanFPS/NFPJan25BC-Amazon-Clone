@@ -3,15 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom/cjs/react-router-dom.min';
-import AuthContext, { AuthContextProvider } from './context/authContext';
+import { AuthContextProvider } from './context/authContext';
+import { ShoppingState } from './context/shopping/shoppingState';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
         <AuthContextProvider>
-            <App />
+            <ShoppingState>
+                <App />
+            </ShoppingState>
         </AuthContextProvider>
     </BrowserRouter>
 );

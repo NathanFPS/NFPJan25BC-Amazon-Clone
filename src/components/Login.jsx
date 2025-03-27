@@ -1,80 +1,63 @@
-import React, {useState, useRef, useReducer, useEffect, useContext} from 'react';
+import React, { useState, useRef, useReducer, useEffect, useContext } from 'react';
 import ReactDOM from 'react-dom';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, useHistory } from 'react-router-dom';
 import Modal from './Modal';
 import './styles/Login.css';
+import ShoppingContext from '../context/shopping/shoppingContext';
+import { auth } from '../Firebase'
 import AuthContext from '../context/authContext';
 
-const reducer = (state, action) => {
-  if(action.type === 'EMAIL_INPUT') {
-    return {...state, emailValue: action.payload};
-  }
-  if(action.type === 'PASSWORD_INPUT') {
-    return {...state, passwordValue: state.passwordValue};
-  }
-  return {emailValue: "", passwordValue: ""};
-}
 
 const Login = () => {
-  const ctx = useContext(AuthContext);
-  const [formIsValid, setFormIsValid] = useState(false);
-  const [state, dispatch] = useReducer(reducer, {
-    emailValue: "", 
-    passwordValue: ""
-  });
-  const {emailValue: email, passwordValue: password} = state;
-
-  useEffect(() => {
-    const identifier = setTimeout(() => {
-      console.log("Checking form validity!");
-      setFormIsValid(email.includes('@') && state.password.trim().length > 6);
-    }, 500);
-    return () => {
-      console.log("CLEANUP");
-      clearTimeout(identifier);
-    }
-  }, [email, password]);
-
-  const emailChangeHandler = (e) => {
-    dispatch({type: 'EMAIL_INPUT', payload: e.target.value});
-  }
-
-  const passwordChangeHandler = (e) => {
-    dispatch({type: 'PASSWORD_INPUT', payload: e.target.value});
-  }
+  const history = useHistory();
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
 
   const signIn = (e) => {
     e.preventDefault();
-    console.log("Entered Email: ", state.emailValue);
-    console.log("Entered Password: ", state.passwordValue);
-    ctx.onLogin(state.emailValue, state.passwordValue);
-  }
+    auth.signInWithEmailAndPassword(email, password)
+      .then((auth) => {
+        history.push("/");
+      })
+      .catch((error) => alert(error.message));
+  };
+
+  const register = (e) => {
+    e.preventDefault();
+    auth.createUserWithEmailAndPassword(email, password)
+      .then((auth) => {
+        if (auth) {
+        history.push("/");
+        }
+      })
+      .catch((error) => alert(error.message));
+  };
 
   return (
     <div className="login">
       <Link to="/">
         <img className="login-logo"
-        src="http://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1024px-Amazon_logo.svg.png" alt="" />
+          src="http://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1024px-Amazon_logo.svg.png" alt="" />
       </Link>
       <div className="login-container">
         <h1>Sign In</h1>
         <form>
           <h5>Email</h5>
-          <input type="text" 
-            value={state.emailValue}
-            onChange={emailChangeHandler}
+          <input type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <h5>Password</h5>
-          <input type="password" 
-            value={state.passwordValue}
-            onChange={passwordChangeHandler}
+          <input type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
-          <button type="submit" className="login-signInButton">Sign In</button>
+          <button type="submit" className="login-signInButton" onClick={signIn}>Sign In</button>
         </form>
         <p>
           By signing-in you agree to the AMAZON FAKE CLONE Conditions of Use & Sale. Please see our Privacy Notice, our Cookies Notice and our Interest-Based Ads Notice.
         </p>
-        <button className="login-registerButton">Create your Amazon Account</button>
+        <button className="login-registerButton" onClick={register}>Create your Amazon Account</button>
       </div>
     </div>
   );
