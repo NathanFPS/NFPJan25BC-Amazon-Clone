@@ -25,13 +25,13 @@ export const ShoppingState = (props) => {
 
     return (
         <ShoppingContext.Provider
-        value={{
-            basket: state.basket,
-            user: state.user,
-            getBasketTotal,
-            addToBasket,
-            setUser
-        }}>
+            value={{
+                basket: state.basket,
+                user: state.user,
+                getBasketTotal,
+                addToBasket,
+                setUser
+            }}>
             {props.children}
         </ShoppingContext.Provider>
     );

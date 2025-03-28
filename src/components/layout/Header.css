@@ -46,15 +46,18 @@
     margin-left: 10px;
     margin-right: 10px;
     color: white;
+    cursor: pointer;
 }
 
 .option-1 {
     font-size: 10px;
+    color: white;
 }
 
 .option-2 {
     font-size: 13px;
     font-weight: 800;
+    color: white;
 }
 
 .header-basket {
