@@ -5,10 +5,12 @@ import './Header.css';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import AuthContext from '../../context/authContext';
+import ShoppingContext from '../../context/shopping/shoppingContext';
 
 const Header = () => {
   const ctx = useContext(AuthContext);
-
+  const shoppingCtx = useContext(ShoppingContext); 
+  
   return (
     <>
       <header className="header">
@@ -21,13 +23,11 @@ const Header = () => {
         </div>
         <div className="header-nav">
           {ctx.isLoggedIn ? (
-            // If the user is logged in, show logout option
             <div className="header-options" onClick={ctx.onLogout}>
               <span className="option-1">Hello, {ctx.userEmail}</span>
               <span className="option-2">Sign Out</span>
             </div>
           ) : (
-            // If the user is not logged in, show sign-in option
             <Link to="/login">
               <div className="header-options">
                 <span className="option-1">Hello Guest</span>
@@ -39,16 +39,16 @@ const Header = () => {
             <span className="option-1">Returns</span>
             <span className="option-2">And Orders</span>
           </div>
-
           <div className="header-options">
             <span className="option-1">Your</span>
             <span className="option-2">Prime</span>
           </div>
-
-          <div className="header-basket">
-            <ShoppingCartOutlinedIcon />
-            <span className="basket-count">0</span>
-          </div>
+          <Link to="/checkout">
+            <div className="header-basket">
+              <ShoppingCartOutlinedIcon />
+              <span className="basket-count">{shoppingCtx.basket.length}</span>
+            </div>
+          </Link>
         </div>
       </header>
     </>

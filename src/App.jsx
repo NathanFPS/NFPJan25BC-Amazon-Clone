@@ -7,6 +7,8 @@ import Header from './components/layout/Header';
 import ProductsDetails from './components/ProductsDetails';
 import Login from './components/Login';
 import NotFound from './components/NotFound';
+import CheckoutProduct from './components/CheckoutProduct';
+import Checkout from './components/Checkout';
 
 const App = () => {
     return (
@@ -21,6 +23,7 @@ const App = () => {
                         <Route path="/home" component={Home} />
                         <Route path="/products" component={Products} />
                         <Route path="/products-details/:id" component={ProductsDetails} />
+                        <Route path="/checkout" component={Checkout} />
                         <Route path="/login" component={Login} />
                         <Route path="*" component={NotFound} />
                     </Switch>

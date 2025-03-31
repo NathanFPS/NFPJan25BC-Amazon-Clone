@@ -56,12 +56,16 @@ export const AuthContextProvider = (props) => {
         }
     };
 
-    const logoutHandler = () => {
-        auth.signOut();
-        setIsLoggedIn(false);
-        setUserEmail(""); // Clear email on logout
-        localStorage.removeItem('isLoggedIn');
-        localStorage.removeItem('userEmail');
+    const logoutHandler = async () => {
+        try {
+            await auth.signOut();
+            setIsLoggedIn(false);
+            setUserEmail("");
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('userEmail');
+        } catch (error) {
+            console.error("Logout error: ", error.message);
+        }
     };
 
     return (

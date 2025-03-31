@@ -35,6 +35,10 @@
     
 }
 
+.pbutton:hover {
+    cursor: pointer;
+}
+
 .pprice {
     margin-top: 5px;
 }
