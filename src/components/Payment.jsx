@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import axios from '../Axios';
 import './styles/Payment.css';
 import ShoppingContext from '../context/shopping/shoppingContext';
 import CheckoutProduct from './CheckoutProduct';
@@ -8,7 +9,26 @@ import AuthContext from '../context/authContext';
 const Payment = () => {
     const shoppingContext = useContext(ShoppingContext);
     const { userEmail } = useContext(AuthContext);
-    const { basket, user } = shoppingContext; // Get the basket from context
+    const { basket, user, getBasketTotal } = shoppingContext;
+
+    const [succeeded, setSucceeded] = useState(false);
+    const [processing, setProcessing] = useState('');
+    const [error, setError] = useState(null);
+    const [disabled, setDisabled] = useState(ture);
+    const [clientSecret, setClientSecret] = useState(true);
+
+    useEffect(() => {
+        const getClientSecret = async () => {
+            const response = await axios({
+                method: 'POST',
+                url: `/payments/create?total=${getBasketTotal(basket) * 100}`,
+            })
+            setClientSecret(response.data.clientSecret);
+        }
+        getClientSecret();
+    }, [basket]);
+
+    console.log('The secret is =>', clientSecret)
 
     return (
         <div className='payment'>
