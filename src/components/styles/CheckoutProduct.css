@@ -12,14 +12,17 @@
 
 .checkout-pinfo {
     padding-left: 20px;
+    
 }
 
 .checkout-name {
     font-size: 17px;
     font-weight: 800;
+    background: #111;
+    color: #a88734;
 }
 
-.checkout-pinfo > button {
+.checkout-ppricing > button {
     background-color: #f0c14b;
     border: 1px solid;
     margin-top: 10px;

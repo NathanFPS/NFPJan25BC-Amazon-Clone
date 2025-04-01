@@ -4,6 +4,8 @@ import './styles/Checkout.css'
 import CheckoutProduct from './CheckoutProduct';
 import Subtotal from './Subtotal';
 import AuthContext from '../context/authContext';
+import Product from './Product';
+import Products from './Products';
 
 const Checkout = () => {
     const shoppingContext = useContext(ShoppingContext);
@@ -17,7 +19,7 @@ const Checkout = () => {
                     <h3>Hello, {userEmail || "Guest"}</h3>
                     <h2 className='checkout-title'>Your Shopping Basket</h2>
                     {basket.map(item =>
-                        (<CheckoutProduct 
+                        (<CheckoutProduct
                             key={item.id}
                             id={item.id}
                             title={item.title}

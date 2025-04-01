@@ -9,6 +9,7 @@ import Login from './components/Login';
 import NotFound from './components/NotFound';
 import CheckoutProduct from './components/CheckoutProduct';
 import Checkout from './components/Checkout';
+import Payment from './components/Payment';
 
 const App = () => {
     return (
@@ -24,6 +25,7 @@ const App = () => {
                         <Route path="/products" component={Products} />
                         <Route path="/products-details/:id" component={ProductsDetails} />
                         <Route path="/checkout" component={Checkout} />
+                        <Route path="/payment" component={Payment} />
                         <Route path="/login" component={Login} />
                         <Route path="*" component={NotFound} />
                     </Switch>
