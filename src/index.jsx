@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -7,17 +7,16 @@ import { BrowserRouter } from 'react-router-dom/cjs/react-router-dom.min';
 import { AuthContextProvider } from './context/authContext';
 import { ShoppingState } from './context/shopping/shoppingState';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-    <BrowserRouter>
-        <AuthContextProvider>
-            <ShoppingState>
-                <App />
-            </ShoppingState>
-        </AuthContextProvider>
-    </BrowserRouter>
+ReactDOM.render(
+  <BrowserRouter>
+    <AuthContextProvider>
+      <ShoppingState>
+        <App />
+      </ShoppingState>
+    </AuthContextProvider>
+  </BrowserRouter>,
+  document.getElementById('root')
 );
-
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

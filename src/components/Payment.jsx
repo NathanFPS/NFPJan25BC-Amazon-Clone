@@ -14,7 +14,7 @@ const Payment = () => {
     const [succeeded, setSucceeded] = useState(false);
     const [processing, setProcessing] = useState('');
     const [error, setError] = useState(null);
-    const [disabled, setDisabled] = useState(ture);
+    const [disabled, setDisabled] = useState(true);
     const [clientSecret, setClientSecret] = useState(true);
 
     useEffect(() => {

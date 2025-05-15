@@ -6,7 +6,12 @@ export const ShoppingState = (props) => {
     const initialState = {basket: [], user: []};
     const [state, dispatch] = useReducer(shoppingReducer, initialState);
     
-    const getBasketTotal = (basket) => basket?.reduce((amount, item) => item.price + amount, 0);
+    const getBasketTotal = (basket) => {
+        return basket.reduce((amount, item) => {
+            const price = parseFloat(item.price);
+            return amount + (isNaN(price) ? 0 : price);
+        }, 0);
+    };
     
     const addToBasket = async (item) => {
         dispatch({

@@ -7,20 +7,24 @@ const Product = ({id, image, title, rating, price}) => {
     const shoppingContext = useContext(ShoppingContext);
     const {addToBasket} = shoppingContext;
     const addToBasketHandler = () => {
-        addToBasket({item:{id, image, title, rating, price}});
+        addToBasket({ id, image, title, rating, price });
     };
     
     return (
         <div className='product' key={id}>
-            <img src={image} alt="" />
+            <a href={`/products-details/${id}`}>
+                <img src={image} alt="" />
+            </a>
             <div className="pinfo">
-                <p>{title}</p>
+                <Link to={`/products-details/${id}`} className="plink">
+                    <p>{title}</p>
+                </Link>
                 <div className="prating">
                     {Array(rating)
                         .fill()
                         .map((_, i) => (
-                        <p key={i}>⭐</p>
-                    ))}
+                            <p key={i}>⭐</p>
+                        ))}
                 </div>
                 <div className="ppricing">
                     <small>R</small>
@@ -30,8 +34,8 @@ const Product = ({id, image, title, rating, price}) => {
             <button className="pbutton" onClick={addToBasketHandler}>
                 Add to Basket?
             </button>
-        </div>   
-      );
+        </div>
+    );
 }
 
 export default Product;

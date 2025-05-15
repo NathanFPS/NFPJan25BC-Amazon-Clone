@@ -15,7 +15,7 @@ import Payment from './components/Payment';
 import './App.css';
 
 const promise = loadStripe(
-    pk_test_51R92zt4KrdOFPoaSLXn9DQV8ExW6Y3ys3gotI9r2OuG5Fhbfgby0D492zLA4nTVEf94DYiMD8JPVXOyWMkEeSIsN00TAG87iVW
+    'pk_test_51R92zt4KrdOFPoaSLXn9DQV8ExW6Y3ys3gotI9r2OuG5Fhbfgby0D492zLA4nTVEf94DYiMD8JPVXOyWMkEeSIsN00TAG87iVW'
 )
 
 const App = () => {
