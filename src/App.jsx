@@ -32,9 +32,11 @@ const App = () => {
                         <Route path="/products" component={Products} />
                         <Route path="/products-details/:id" component={ProductsDetails} />
                         <Route path="/checkout" component={Checkout} />
-                        <Route path="/payment">     
-                            <Elements stripe={promise}>component={Payment}</Elements>
-                        </Route> 
+                        <Route path="/payment">
+                            <Elements stripe={promise}>
+                                <Payment />
+                            </Elements>
+                        </Route>
                         <Route path="/login" component={Login} />
                         <Route path="*" component={NotFound} />
                     </Switch>
